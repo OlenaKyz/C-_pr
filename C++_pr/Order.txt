@@ -1,0 +1,10 @@
+
+Nomer zakaza: 1
+Data zakaza: 15.11
+Login polzovatelya: 
+Status zakaza: Completed
+Tovari v zakaze:
+
+Name: iPhone 15
+Description: Apple iPhone 15
+Price: $999
