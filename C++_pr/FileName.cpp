@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <locale>
+
 
 using namespace std;
 
@@ -14,7 +14,8 @@ public:
     double price;
     int quantity;
 
-    Product(string name, string description, double price, int quantity) {
+    Product(string name, string description, double price, int quantity) 
+    {
         this->name = name;
         this->description = description;
         this->price = price;
@@ -23,7 +24,6 @@ public:
 
 
 };
-
 
 class Cart
 {
@@ -97,14 +97,14 @@ public:
 
     void Print()
     {
-        cout << "\nНомер заказа: " << orderNumber << endl;
-        cout << "Дата заказа: " << orderDate << endl;
+        cout << "\nNomer zakaza: " << orderNumber << endl;
+        cout << "Data zakaza: " << orderDate << endl;
 
         for (Product* product : products)
         {
-            cout << "\nНазвание: " << product->name << endl;
-            cout << "Описание: " << product->description << endl;
-            cout << "Цена: $" << product->price << endl;
+            cout << "\nName: " << product->name << endl;
+            cout << "Description: " << product->description << endl;
+            cout << "Price: $" << product->price << endl;
         }
     }
 };
@@ -136,7 +136,6 @@ public:
 
 int main()
 {
-    setlocale(LC_ALL, "RU");
 
     User* user = new User("admin", "password");
 
@@ -150,7 +149,7 @@ int main()
     cart->addProduct(product2);
 
     double totalPrice = cart->getTotalPrice();
-    cout << "Общая стоимость товаров в корзине: " << totalPrice << endl;
+    cout << "Obschaya stoimost tovarov v korzine: " << totalPrice << endl;
 
 
     Order* order = new Order(1, double(15.11), "Process", user->username);
@@ -159,30 +158,31 @@ int main()
     order->setOrderStatus("Completed");
 
 
-    cout << "\nЛогин: " << user->getUsername() << endl;
-    cout << "Статус заказа: " << order->getOrderStatus() << endl;
+    cout << "\nLogin: " << user->getUsername() << endl;
+    cout << "Status zakaza: " << order->getOrderStatus() << endl;
 
 
     totalPrice = order->getTotalPrice();
-    cout << "Общая стоимость товаров в заказе: " << totalPrice << endl;
+    cout << "Obschaya stoimost tovarov v zakaze: " << totalPrice << endl;
 
 
     ofstream outputFile("Order.txt");
-    if (!outputFile.is_open()) {
+    if (!outputFile.is_open())
+    {
         cout << "error" << endl;
         return 1;
     }
-    outputFile << "\nНомер заказа: " << order->orderNumber << endl;
-    outputFile << "Дата заказа: " << order->orderDate << endl;
-    outputFile << "Логин пользователя: " << order->userId << endl;
-    outputFile << "Статус заказа: " << order->orderStatus << endl;
-    outputFile << "Товары в заказе:" << endl;
+    outputFile << "\nNomer zakaza: " << order->orderNumber << endl;
+    outputFile << "Data zakaza: " << order->orderDate << endl;
+    outputFile << "Login polzovatelya: " << order->userId << endl;
+    outputFile << "Status zakaza: " << order->orderStatus << endl;
+    outputFile << "Tovari v zakaze:" << endl;
 
     for (Product* product : order->products)
     {
-        outputFile << "\nНазвание: " << product->name << endl;
-        outputFile << "Описание: " << product->description << endl;
-        outputFile << "Цена: $" << product->price << endl;
+        outputFile << "\nName: " << product->name << endl;
+        outputFile << "Description: " << product->description << endl;
+        outputFile << "Price: $" << product->price << endl;
     }
     outputFile.close();
 
